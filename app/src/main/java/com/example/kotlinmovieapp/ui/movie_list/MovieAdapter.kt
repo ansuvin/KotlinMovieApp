@@ -33,7 +33,9 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieVO) {
-            binding.movie = movie
+            var vo = movie
+            vo.openDate = "개봉년도: ${vo.openDate.substring(0,4)}년"
+            binding.movie = vo
             binding.executePendingBindings()
         }
     }

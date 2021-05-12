@@ -33,7 +33,6 @@ class Repository(application: Application) {
                 t.stackTrace
             }
         })
-
         return data
     }
 }

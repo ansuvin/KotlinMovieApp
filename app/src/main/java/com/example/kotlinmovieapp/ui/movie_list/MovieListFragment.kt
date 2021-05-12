@@ -34,7 +34,6 @@ class MovieListFragment : Fragment() {
             ViewModelProvider(this).get(MovieListViewModel::class.java)
 
         movieViewModel.list.observe(this.viewLifecycleOwner, { liveData ->
-            Log.e("TAGGG", data.value.toString())
             data.value = liveData
             val mAdapter = MovieAdapter()
             binding.fragmentRecyclerview.adapter = mAdapter
