@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlinmovieapp.model.MovieVO
 import com.example.kotlinmovieapp.model.ResponseMovieList
-import com.example.kotlinmovieapp.repository.Repository
 import com.example.kotlinmovieapp.retrofit.RetrofitHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +15,7 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
     val TAG = "MovieListViewModel"
 
     val list = MutableLiveData<List<MovieVO>>()
+    var query = MutableLiveData<String>()
 
     fun rcvMovieList() {
         val call = RetrofitHelper.getMovieApi().getMovies("f5eef3421c602c6cb7ea224104795888", "2020")
@@ -32,5 +32,9 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
                 Log.e(TAG, "error: ${t.message}")
             }
         })
+    }
+
+    fun searchQuery() {
+        Log.i(TAG, "click ${query.value.toString()}")
     }
 }
