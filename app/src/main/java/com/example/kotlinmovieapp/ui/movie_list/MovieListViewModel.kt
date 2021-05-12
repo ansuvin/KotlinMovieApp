@@ -23,12 +23,24 @@ import kotlin.collections.ArrayList
 class MovieListViewModel(application: Application) : AndroidViewModel(application) {
     val TAG = "MovieListViewModel"
     val repository: Repository = Repository(application)
-    val movie = repository.getMovieData()
+    var movie = repository.getMovieData()
 
     val list = MutableLiveData<List<MovieVO>>()
 
     fun rcvMovieList() {
-        list.postValue(movie.value)
-        Log.e(TAG, list.toString())
+        val call = RetrofitHelper.getMovieApi().getMovies("f5eef3421c602c6cb7ea224104795888", "2020")
+            call.enqueue(object : Callback<ResponseMovieList> {
+            override fun onResponse(
+                call: Call<ResponseMovieList>,
+                response: Response<ResponseMovieList>
+            ) {
+                list.value = response.body()!!.result.list
+                Log.e(TAG, "ㅎㅎ: ${response.body()!!.result.list}")
+            }
+
+            override fun onFailure(call: Call<ResponseMovieList>, t: Throwable) {
+                Log.e(TAG, "error: ${t.message}")
+            }
+        })
     }
 }

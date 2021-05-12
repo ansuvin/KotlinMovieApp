@@ -20,7 +20,7 @@ import com.example.kotlinmovieapp.model.ResponseMovieList
 class MovieListFragment : Fragment() {
 
     private lateinit var movieViewModel: MovieListViewModel
-    private lateinit var binding : FragmentMovieListBinding
+    private lateinit var binding: FragmentMovieListBinding
     var data = MutableLiveData<List<MovieVO>>()
 
     override fun onCreateView(
@@ -34,6 +34,7 @@ class MovieListFragment : Fragment() {
             ViewModelProvider(this).get(MovieListViewModel::class.java)
 
         movieViewModel.list.observe(this.viewLifecycleOwner, { liveData ->
+            Log.e("TAGGG", data.value.toString())
             data.value = liveData
             val mAdapter = MovieAdapter()
             binding.fragmentRecyclerview.adapter = mAdapter
@@ -53,4 +54,5 @@ class MovieListFragment : Fragment() {
         super.onResume()
         movieViewModel.rcvMovieList()
     }
+
 }

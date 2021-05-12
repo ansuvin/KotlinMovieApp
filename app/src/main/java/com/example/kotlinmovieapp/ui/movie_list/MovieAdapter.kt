@@ -4,17 +4,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlinmovieapp.R
 import com.example.kotlinmovieapp.databinding.ItemMovieListBinding
 import com.example.kotlinmovieapp.model.MovieVO
-import com.example.kotlinmovieapp.model.ResponseMovieList
 
-class MovieAdapter () : RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
+class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     var list = listOf<MovieVO>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ItemMovieListBinding>(layoutInflater, viewType, parent,false)
+        val binding = DataBindingUtil.inflate<ItemMovieListBinding>(
+            LayoutInflater.from(parent.context), R.layout.item_movie_list, parent, false
+        )
         return ViewHolder(binding)
     }
 
@@ -30,9 +30,10 @@ class MovieAdapter () : RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
         return list.size
     }
 
-    inner class ViewHolder(private val binding: ItemMovieListBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemMovieListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieVO) {
-            binding.movie =movie
+            binding.movie = movie
             binding.executePendingBindings()
         }
     }

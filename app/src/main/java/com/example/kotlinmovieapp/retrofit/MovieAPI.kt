@@ -9,6 +9,7 @@ import java.util.*
 interface MovieAPI {
     @GET("movie/searchMovieList.json")
     fun getMovies(
-        @Query("key") key: String
+        @Query("key") key: String,
+        @Query("openStartDt") openDate: String
     ): Call<ResponseMovieList>
 }
