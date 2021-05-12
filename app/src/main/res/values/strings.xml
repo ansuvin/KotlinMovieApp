@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">KotlinMovieApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_movie_list">영화 목록</string>
+    <string name="title_movie_rank">일별 Rank</string>
+    <string name="title_filmmaker_list">영화인</string>
 </resources>
