@@ -24,8 +24,3 @@ data class MovieVO(
     @SerializedName("directors")
     var directors: List<PeopleName>
 )
-
-data class PeopleName(
-    @SerializedName("peopleNm")
-    var name: String
-)

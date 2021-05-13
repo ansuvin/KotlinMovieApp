@@ -1,5 +1,7 @@
 package com.example.kotlinmovieapp.ui.movie_list
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinmovieapp.R
 import com.example.kotlinmovieapp.databinding.ItemMovieListBinding
 import com.example.kotlinmovieapp.model.MovieVO
+import com.example.kotlinmovieapp.ui.movie_detail.MovieDetailActivity
 
 class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     var list = listOf<MovieVO>()
+    lateinit var context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.ViewHolder {
         val binding = DataBindingUtil.inflate<ItemMovieListBinding>(
             LayoutInflater.from(parent.context), R.layout.item_movie_list, parent, false
         )
+        context = parent.context
         return ViewHolder(binding)
     }
 
@@ -22,7 +27,10 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         holder.bind(movie = list[position])
 
         holder.itemView.setOnClickListener {
-            Log.e("TAG", "click: ${list[position].title}")
+            Log.e("TAG", "click: ${list[position].movieCode}")
+            val intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra("movieCode", list[position].movieCode)
+            context.startActivity(intent)
         }
     }
 

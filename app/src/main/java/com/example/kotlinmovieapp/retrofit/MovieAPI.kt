@@ -1,5 +1,6 @@
 package com.example.kotlinmovieapp.retrofit
 
+import com.example.kotlinmovieapp.model.ResponseMovieDetail
 import com.example.kotlinmovieapp.model.ResponseMovieList
 import retrofit2.Call
 import retrofit2.http.GET
@@ -18,4 +19,10 @@ interface MovieAPI {
         @Query("key") key: String,
         @Query("movieNm") title: String
     ): Call<ResponseMovieList>
+
+    @GET("movie/searchMovieInfo.json")
+    fun getMovieDetail(
+        @Query("key") key: String,
+        @Query("movieCd") movieCode: String
+    ): Call<ResponseMovieDetail>
 }
