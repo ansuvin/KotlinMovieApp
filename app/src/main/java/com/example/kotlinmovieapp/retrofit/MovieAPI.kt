@@ -12,4 +12,10 @@ interface MovieAPI {
         @Query("key") key: String,
         @Query("openStartDt") openDate: String
     ): Call<ResponseMovieList>
+
+    @GET("movie/searchMovieList.json")
+    fun getSearchMovies(
+        @Query("key") key: String,
+        @Query("movieNm") title: String
+    ): Call<ResponseMovieList>
 }

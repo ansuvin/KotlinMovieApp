@@ -20,21 +20,43 @@ class MovieListViewModel(application: Application) : AndroidViewModel(applicatio
     fun rcvMovieList() {
         val call = RetrofitHelper.getMovieApi().getMovies("f5eef3421c602c6cb7ea224104795888", "2020")
             call.enqueue(object : Callback<ResponseMovieList> {
+                override fun onResponse(
+                    call: Call<ResponseMovieList>,
+                    response: Response<ResponseMovieList>
+                ) {
+                    if (response.isSuccessful){
+                        list.value = response.body()!!.result.list
+                        Log.e(TAG, "ㅎㅎ: ${response.body()!!.result.list}")
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseMovieList>, t: Throwable) {
+                    Log.e(TAG, "error: ${t.message}")
+                }
+            })
+    }
+
+    fun searchQuery() {
+        val queryStr = query.value.toString()
+        Log.i(TAG, "click ${queryStr}")
+        val callback = RetrofitHelper.getMovieApi().getSearchMovies("f5eef3421c602c6cb7ea224104795888", queryStr)
+        callback.enqueue(object : Callback<ResponseMovieList> {
             override fun onResponse(
                 call: Call<ResponseMovieList>,
                 response: Response<ResponseMovieList>
             ) {
-                list.value = response.body()!!.result.list
-                Log.e(TAG, "ㅎㅎ: ${response.body()!!.result.list}")
+                if (response.isSuccessful) {
+                    list.value = response.body()!!.result.list
+                } else {
+                    Log.e(TAG, "res-err: ${response.message()}")
+                }
+
             }
 
             override fun onFailure(call: Call<ResponseMovieList>, t: Throwable) {
                 Log.e(TAG, "error: ${t.message}")
             }
-        })
-    }
 
-    fun searchQuery() {
-        Log.i(TAG, "click ${query.value.toString()}")
+        })
     }
 }

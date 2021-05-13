@@ -34,7 +34,11 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieVO) {
             var vo = movie
-            vo.openDate = "개봉년도: ${vo.openDate.substring(0,4)}년"
+            if (vo.openDate != "") {
+                vo.openDate = "개봉년도: ${vo.openDate.substring(0,4)}년"
+            } else {
+                vo.openDate = "개봉년도: 알 수 없음"
+            }
             binding.movie = vo
             binding.executePendingBindings()
         }
