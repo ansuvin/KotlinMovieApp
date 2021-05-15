@@ -1,5 +1,7 @@
 package com.example.kotlinmovieapp.retrofit
 
+import com.example.kotlinmovieapp.model.ResponseBoxOffice
+import com.example.kotlinmovieapp.model.ResponseFilmmakerList
 import com.example.kotlinmovieapp.model.ResponseMovieDetail
 import com.example.kotlinmovieapp.model.ResponseMovieList
 import retrofit2.Call
@@ -25,4 +27,27 @@ interface MovieAPI {
         @Query("key") key: String,
         @Query("movieCd") movieCode: String
     ): Call<ResponseMovieDetail>
+
+    @GET("people/searchPeopleList.json?")
+    fun getFilmmakers(
+        @Query("key") key: String
+    ): Call<ResponseFilmmakerList>
+
+    @GET("people/searchPeopleList.json?")
+    fun getSearchFilmmakersFilmo(
+        @Query("key") key: String,
+        @Query("filmoNames") filmo: String
+    ): Call<ResponseFilmmakerList>
+
+    @GET("people/searchPeopleList.json?")
+    fun getSearchFilmmakersName(
+        @Query("key") key: String,
+        @Query("filmoNames") name: String
+    ): Call<ResponseFilmmakerList>
+
+    @GET("boxoffice/searchDailyBoxOfficeList.json?")
+    fun getBoxOfficeList(
+        @Query("key") key: String,
+        @Query("targetDt") date: String
+    ): Call<ResponseBoxOffice>
 }
