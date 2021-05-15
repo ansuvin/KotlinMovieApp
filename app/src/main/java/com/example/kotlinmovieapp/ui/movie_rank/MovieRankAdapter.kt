@@ -1,6 +1,7 @@
 package com.example.kotlinmovieapp.ui.movie_rank
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -40,6 +41,8 @@ class MovieRankAdapter : RecyclerView.Adapter<MovieRankAdapter.ViewHolder>() {
                 else -> vo.intenStr = "▼"
             }
             vo.audiAcc = "누적 관객수: ${vo.audiAcc}명"
+            vo.rank = "${vo.rank}위"
+            vo.boolOld = vo.oldAndNew != "NEW"
             binding.movie = vo
             binding.executePendingBindings()
         }

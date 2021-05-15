@@ -51,6 +51,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:text="@{movie.inten}"
                     android:textColor="@{movie.intenInt == 0 ? @color/black : movie.intenInt &lt; 0 ? @color/blue : @color/red}"
                     android:textSize="14sp"
@@ -88,7 +89,7 @@
                     android:textSize="14sp"
                     android:paddingRight="8dp"
                     android:paddingLeft="8dp"
-                    android:visibility='@{movie.oldAndNew == "NEW" ? View.VISIBLE : View.GONE}'
+                    android:visibility='@{movie.boolOld ? View.GONE : View.VISIBLE}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

@@ -27,5 +27,6 @@ data class MovieRankVO(
     var audiAcc: String,
 
     var intenInt : Int,
-    var intenStr : String
+    var intenStr : String,
+    var boolOld: Boolean
 )
