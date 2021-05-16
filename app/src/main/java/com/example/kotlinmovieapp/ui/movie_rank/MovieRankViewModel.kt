@@ -24,7 +24,7 @@ class MovieRankViewModel : ViewModel() {
         val format = SimpleDateFormat("yyyyMMdd")
         val curDate = format.format(Date(Date().time+(1000*60*60*24*-1)))
         Log.e(TAG, curDate)
-        val call = RetrofitHelper.getMovieApi().getBoxOfficeList("f5eef3421c602c6cb7ea224104795888", "20210512")
+        val call = RetrofitHelper.getMovieApi().getBoxOfficeList("f5eef3421c602c6cb7ea224104795888", curDate)
         call.enqueue(object : Callback<ResponseBoxOffice> {
             override fun onResponse(
                 call: Call<ResponseBoxOffice>,

@@ -25,8 +25,4 @@ data class MovieRankVO(
     var title: String,
     @SerializedName("audiAcc")
     var audiAcc: String,
-
-    var intenInt : Int,
-    var intenStr : String,
-    var boolOld: Boolean
 )

@@ -1,13 +1,13 @@
 package com.example.kotlinmovieapp.ui.movie_rank
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinmovieapp.R
 import com.example.kotlinmovieapp.databinding.ItemMovieRankBinding
+import com.example.kotlinmovieapp.model.MovieDTO
 import com.example.kotlinmovieapp.model.MovieRankVO
 
 class MovieRankAdapter : RecyclerView.Adapter<MovieRankAdapter.ViewHolder>() {
@@ -34,16 +34,19 @@ class MovieRankAdapter : RecyclerView.Adapter<MovieRankAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieRankVO) {
             var vo = movie
-            vo.intenInt = vo.inten.toInt()
-            when(vo.intenInt){
-                0 -> vo.intenStr = "-"
-                in 1..100 -> vo.intenStr = "▲"
-                else -> vo.intenStr = "▼"
+            var dto = MovieDTO("", "", false, "","", 0, "")
+            dto.inten = vo.inten
+            dto.intenInt = vo.inten.toInt()
+            when(dto.intenInt){
+                0 -> dto.intenStr = "-"
+                in 1..100 -> dto.intenStr = "▲"
+                else -> dto.intenStr = "▼"
             }
-            vo.audiAcc = "누적 관객수: ${vo.audiAcc}명"
-            vo.rank = "${vo.rank}위"
-            vo.boolOld = vo.oldAndNew != "NEW"
-            binding.movie = vo
+            dto.title = vo.title
+            dto.audiAcc = "누적 관객수: ${vo.audiAcc}명"
+            dto.rank = "${vo.rank}위"
+            dto.boolOld = vo.oldAndNew != "NEW"
+            binding.movie = dto
             binding.executePendingBindings()
         }
     }
