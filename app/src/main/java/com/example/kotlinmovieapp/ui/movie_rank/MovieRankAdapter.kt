@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinmovieapp.R
 import com.example.kotlinmovieapp.databinding.ItemMovieRankBinding
-import com.example.kotlinmovieapp.model.MovieDTO
+import com.example.kotlinmovieapp.model.MovieRnakDTO
 import com.example.kotlinmovieapp.model.MovieRankVO
 
 class MovieRankAdapter : RecyclerView.Adapter<MovieRankAdapter.ViewHolder>() {
@@ -34,7 +34,7 @@ class MovieRankAdapter : RecyclerView.Adapter<MovieRankAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieRankVO) {
             var vo = movie
-            var dto = MovieDTO("", "", false, "","", 0, "")
+            var dto = MovieRnakDTO("", "", false, "","", 0, "")
             dto.inten = vo.inten
             dto.intenInt = vo.inten.toInt()
             when(dto.intenInt){

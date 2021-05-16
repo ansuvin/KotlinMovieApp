@@ -6,7 +6,7 @@
         <import type="android.view.View"    />
         <variable
             name="movie"
-            type="com.example.kotlinmovieapp.model.MovieDTO" />
+            type="com.example.kotlinmovieapp.model.MovieRnakDTO" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
