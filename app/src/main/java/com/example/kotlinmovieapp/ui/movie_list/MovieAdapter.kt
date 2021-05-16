@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinmovieapp.R
 import com.example.kotlinmovieapp.databinding.ItemMovieListBinding
+import com.example.kotlinmovieapp.model.MovieDTO
 import com.example.kotlinmovieapp.model.MovieVO
 import com.example.kotlinmovieapp.ui.movie_detail.MovieDetailActivity
 
@@ -42,12 +43,13 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieVO) {
             var vo = movie
+            var dto = MovieDTO(vo.directors, "", vo.title)
             if (vo.openDate != "") {
-                vo.openDate = "개봉년도: ${vo.openDate.substring(0,4)}년"
+                dto.openDate = "개봉년도: ${vo.openDate.substring(0,4)}년"
             } else {
-                vo.openDate = "개봉년도: 알 수 없음"
+                dto.openDate = "개봉년도: 알 수 없음"
             }
-            binding.movie = vo
+            binding.movie = dto
             binding.executePendingBindings()
         }
     }
