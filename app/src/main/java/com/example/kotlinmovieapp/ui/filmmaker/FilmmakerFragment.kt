@@ -26,7 +26,7 @@ class FilmmakerFragment : Fragment() {
     ): View? {
 
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_filmmaker_list, container, false)
         viewModel =
             ViewModelProvider(this).get(FilmmakerViewModel::class.java)
 
